@@ -9,4 +9,8 @@ class UserController extends Controller
     public function createSeeker(){
         return view('user.seekr-register');
     }
+
+    public function storeSeeker(){
+        return "hello";
+    }
 }
