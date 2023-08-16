@@ -2,10 +2,11 @@
 @section('content')
 
 <div class="container mt-5">
+    Hello, {{ auth()->user()->name}}
+    @if(Auth::check()||auth()->user()->user_type == 'employer')
+    <p>Your trial is until {{auth()->user()->user_trial}}</p>
+    @endif
     <div class="row justify-content-center">
-        Hello, {{ auth()->user()->name}}
-        <p class="text-center">Your trial is until {{auth()->user()->user_trial}}</p>
-
         <div class="col-md-3">
             <div class="card-counter primary">
                 <p class="text-center mt-3 lead">User Profile</p>
