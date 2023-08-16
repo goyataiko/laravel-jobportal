@@ -27,7 +27,7 @@ class UserController extends Controller
             'user_type'=> self::JOB_SEEKR
         ]);
 
-        return redirect('login');
+        return redirect('login')->with('successMessage','your account is created');
     }
 
     public function storeEmployer(RegistrationRequest $request){
@@ -38,7 +38,7 @@ class UserController extends Controller
             'user_type'=> self::JOB_POSTER
         ]);
 
-        return redirect('login');
+        return redirect('login')->with('successMessage','your account is created');
     }
 
     public function login(){
