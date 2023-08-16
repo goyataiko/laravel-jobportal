@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Http\Requests\SeekerRegistrationRequest;
 
 class UserController extends Controller
 {
     const JOB_SEEKR = 'seeker';
     public function createSeeker(){
-        return view('user.seekr-register');
+        return view('user.seeker-register');
     }
 
-    public function storeSeeker(){
+    public function storeSeeker(SeekerRegistrationRequest $request){
         User::create([
             'name'=> request('name'),
             'email'=> request('email'),
