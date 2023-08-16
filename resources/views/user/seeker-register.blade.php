@@ -3,13 +3,13 @@
 
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 text-center">
                     <h1>Looking for a job?</h1>
                     <h3>Please create an Account</h3>
                     <img src='{{asset("image/click-here.png")}}' alt="click-here">
                 </div>
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-header">Register</div>
                         <form action="{{route('store.seeker')}}" method="post">@csrf
                             <div class="card-body">
