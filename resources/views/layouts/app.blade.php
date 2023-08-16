@@ -18,8 +18,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="#">Login</a>
-                <a class="nav-link" href="#">Job Seeker</a>
+                <a class="nav-link" href="{{route('login')}}">Login</a>
+                <a class="nav-link" href="{{route('create.seeker')}}">Job Seeker</a>
                 <a class="nav-link" href="#">Employer</a>
             </div>
             </div>

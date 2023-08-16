@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Http\Requests\SeekerRegistrationRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -26,5 +27,17 @@ class UserController extends Controller
 
     public function login(){
         return view('user.login');
+    }
+
+    public function postLogin(Request $request){
+        $request -> validate([
+            'email'=>'required',
+            'password'=>'required',
+        ]);
+
+        $credential = $request-> only('email','password');
+        if(Auth::attempt($credential)){
+            return redirect('/dashboard');
+        }
     }
 }
