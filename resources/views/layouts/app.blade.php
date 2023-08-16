@@ -21,7 +21,7 @@
                 @if(!@Auth::check())
                 <a class="nav-link" href="{{route('login')}}">Login</a>
                   <a class="nav-link" href="{{route('create.seeker')}}">Job Seeker</a>
-                  <a class="nav-link" href="#">Employer</a>
+                  <a class="nav-link" href="{{route('create.employer')}}">Employer</a>
                 @endif
                 @if(@Auth::check())
                   <a class="nav-link" id="logout" href="#">LogOut</a>

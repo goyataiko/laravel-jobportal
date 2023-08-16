@@ -3,8 +3,8 @@
 
 <div class="container mt-5">
     Hello, {{ auth()->user()->name}}
-    @if(Auth::check()||auth()->user()->user_type == 'employer')
-    <p>Your trial is until {{auth()->user()->user_trial}}</p>
+    @if(Auth::check()&&auth()->user()->user_type == 'employer')
+        <p>Your trial is until {{auth()->user()->user_trial}}</p>
     @endif
     <div class="row justify-content-center">
         <div class="col-md-3">
