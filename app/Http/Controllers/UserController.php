@@ -35,7 +35,8 @@ class UserController extends Controller
             'name'=> request('name'),
             'email'=> request('email'),
             'password'=> bcrypt(request('password')),
-            'user_type'=> self::JOB_POSTER
+            'user_type'=> self::JOB_POSTER,
+            'user_trial'=> now()->addWeek()
         ]);
 
         return redirect('login')->with('successMessage','your account is created');
