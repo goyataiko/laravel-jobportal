@@ -39,5 +39,11 @@ class UserController extends Controller
         if(Auth::attempt($credential)){
             return redirect('/dashboard');
         }
+        return "Wrong ID of Password";
+    }
+
+    public function logout() {
+        auth()->logout();
+        return redirect()->route('login');
     }
 }

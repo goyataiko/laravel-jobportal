@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
 
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
 Route::get('/register/seeker', [UserController::class, 'createSeeker'])->name('create.seeker');
 Route::post('/register/seeker', [UserController::class, 'storeSeeker'])->name('store.seeker');
 
