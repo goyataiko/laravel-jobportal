@@ -4,6 +4,7 @@
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-4">
+                    @include('message')
                     <div class="card shadow">
                         <div class="card-header">Login</div>
                         <form action="{{route('login.post')}}" method="post">@csrf
