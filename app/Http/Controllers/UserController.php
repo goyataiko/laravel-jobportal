@@ -30,8 +30,9 @@ class UserController extends Controller
         Auth::login($user);
         // 인증메일 발송
         $user->sendEmailVerificationNotification();
-        // verification 페이지로 이동
-        return redirect()->route('verification.notice')->with('successMessage','your account is created');
+
+        return response()->json('success');
+        // return redirect()->route('verification.notice')->with('successMessage','your account is created');
     }
 
     public function storeEmployer(RegistrationRequest $request){
@@ -45,7 +46,8 @@ class UserController extends Controller
         Auth::login($user);
         $user->sendEmailVerificationNotification();
 
-        return redirect('login')->with('successMessage','your account is created');
+        return response()->json('success');
+        // return redirect('login')->with('successMessage','your account is created');
     }
 
     public function login(){
