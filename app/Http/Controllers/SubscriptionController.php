@@ -6,5 +6,12 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-    //
+    public function subscribe(){
+        return view('subscription.index');
+    }
+
+    public function initPay(Request $request){
+        //
+        dd("hello");
+    }
 }
