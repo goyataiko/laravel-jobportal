@@ -12,6 +12,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
+        // 잘 되면 그대로 null이지만, 인증이 안되면 login페이지로 이동
         return $request->expectsJson() ? null : route('login');
     }
 }

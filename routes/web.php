@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -43,3 +44,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::get('/verify',[DashboardController::class, 'verify'])->name('verification.notice');
 Route::get('/resend/verification/email', [DashboardController::class, 'resend'])->name('resend.email');
+                                                                    //employer만 접속 가능하도록함
+Route::get('subscribe',[SubscriptionController::class, 'subscribe'])->middleware('auth');
+
+Route::get('pay/weekly',[SubscriptionController::class, 'initPay'])->name('pay.weekly')->middleware('auth');
+Route::get('pay/montly',[SubscriptionController::class, 'initPay'])->name('pay.montly')->middleware('auth');
+Route::get('pay/yearly',[SubscriptionController::class, 'initPay'])->name('pay.yearly')->middleware('auth');
