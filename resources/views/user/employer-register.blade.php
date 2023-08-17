@@ -46,9 +46,6 @@
         </div>
     </div>
 
-
-@endsection
-
 <script>
 
 /*
@@ -101,10 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //button    
     })  
-
-
 });
-
-
 </script>
+
+@endsection
+
 
