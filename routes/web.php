@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
  
-    return redirect('/home');
+    return redirect('/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
@@ -42,3 +42,4 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 ->name('dashboard.index');
 
 Route::get('/verify',[DashboardController::class, 'verify'])->name('verification.notice');
+Route::get('/resend/verification/email', [DashboardController::class, 'resend'])->name('resend.email');
