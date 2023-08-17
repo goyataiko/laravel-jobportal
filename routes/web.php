@@ -20,11 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-//     $request->fulfill();
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
  
-//     return redirect('/home');
-// })->middleware(['auth', 'signed'])->name('verification.verify');
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
