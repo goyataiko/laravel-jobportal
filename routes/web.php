@@ -48,5 +48,8 @@ Route::get('/resend/verification/email', [DashboardController::class, 'resend'])
 
 Route::get('subscribe',[SubscriptionController::class, 'subscribe']);
 Route::get('pay/weekly',[SubscriptionController::class, 'initPay'])->name('pay.weekly');
-Route::get('pay/montly',[SubscriptionController::class, 'initPay'])->name('pay.montly');
-Route::get('pay/yearly',[SubscriptionController::class, 'initPay'])->name('pay.yearly');
+Route::get('pay/monthly',[SubscriptionController::class, 'initPay'])->name('pay.monthly');
+Route::get('pay/anually',[SubscriptionController::class, 'initPay'])->name('pay.anually');
+
+Route::get('payment/success',[SubscriptionController::class, 'paymentSuccess'])->name('payment.success');
+Route::get('payment/cancel',[SubscriptionController::class, 'cancel'])->name('payment.cancel');
