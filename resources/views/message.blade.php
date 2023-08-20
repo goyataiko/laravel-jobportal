@@ -1,3 +1,7 @@
+@if(Session::has('message'))
+    <div class="alert alert-warning">{{Session::get('message')}}</div>
+@endif
+
 @if(Session::has('successMessage'))
     <div class="alert alert-success">{{Session::get('successMessage')}}</div>
 @endif
