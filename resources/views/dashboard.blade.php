@@ -9,6 +9,7 @@
             on {{auth()->user()->user_trial}}</p>
     @endif
     <div class="row justify-content-center">
+    @include('message')
         <div class="col-md-3">
             <div class="card-counter primary">
                 <p class="text-center mt-3 lead">User Profile</p>

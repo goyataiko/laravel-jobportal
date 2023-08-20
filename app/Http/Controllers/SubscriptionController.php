@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Middleware\isEmployer;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -104,16 +105,27 @@ class SubscriptionController extends Controller
             }
 
         }catch(\Exception $e){
-            return $e;
+            return response()->json($e);
         }
     }
 
     public function paymentSuccess(Request $request){
-        //DB 업데이트
+        //결제 성공시 DB 업데이트
+        $plan = $request -> plan;
+        $billingEnds = $request->billing_ends;
+        User::where('id', auth()->user()->id)->update([
+            'plan'=> $plan,
+            'billing_ends' => $billingEnds,
+            'status'=>'paid'
+        ]);
 
+        return redirect()->route('dashboard.index')->with('successMessage','The payment has been approved.');
     }
 
     public function cancel(Request $request){
-        //리디렉트
+        //결제 실패시   
+
+        return redirect()->route('dashboard.index')->with('errorMessage','Your payment has failed.');
+
     }
 }
