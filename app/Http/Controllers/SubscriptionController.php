@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 
+use Illuminate\Support\Facades\Log;
+
 class SubscriptionController extends Controller
 {
     const WEEKLY_AMOUNT = 20;
@@ -148,12 +150,19 @@ class SubscriptionController extends Controller
         User::where('id', auth()->user()->id)->update([
             'plan'=> $plan,
             'billing_ends' => $billingEnds,
-            'status'=>'paid'
+            'status'=>'paid',
+            'user_trial'=> null
         ]);
 
         try{
+            Log::info("send mail...");
+            Log::info(auth()->user());
             Mail::to(auth()->user())->queue(new PurchaseMail($plan, $billingEnds));
+            // 
+            Log::info("sent!!");
         } catch(\Exception $e){
+            Log::error($e);
+
             return response()->json($e);
         }
 
