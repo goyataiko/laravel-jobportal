@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Http\Middleware\isEmployer;
+use App\Mail\PurchaseMail;
 use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;  // url을 생성해주는 extend
+use Illuminate\Support\Facades\Mail; // 메일 보낼떄 이용
 
 use Carbon\Carbon;
 use Stripe\Checkout\Session;
@@ -148,6 +150,12 @@ class SubscriptionController extends Controller
             'billing_ends' => $billingEnds,
             'status'=>'paid'
         ]);
+
+        try{
+            Mail::to(auth()->user())->queue(new PurchaseMail($plan, $billingEnds));
+        } catch(\Exception $e){
+            return response()->json($e);
+        }
 
         return redirect()->route('dashboard.index')->with('successMessage','The payment has been approved.');
     }
