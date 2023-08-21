@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
 
-class TrialEndNotification extends Mailable implements ShouldQueue
+class TrialEndNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,6 +21,7 @@ class TrialEndNotification extends Mailable implements ShouldQueue
      */
     public function __construct(public string $name)
     {
+        // 누구에게 메일을 보내는지
         Log::info('email is sending to {name}', ['name'=> $name]);
     }
 
