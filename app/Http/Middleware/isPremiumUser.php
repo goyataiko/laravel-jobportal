@@ -16,7 +16,7 @@ class isPremiumUser
     public function handle(Request $request, Closure $next): Response
     {
         if($request->user()->user_trial > date('Y-m-d') || 
-        $request->user()->billing_end > date('Y-m-d')) {
+        $request->user()->billing_ends > date('Y-m-d')) {
             return $next($request);
         } else{
             return redirect()->route('subscribe')->with('message','Please subscribe to post a job');
