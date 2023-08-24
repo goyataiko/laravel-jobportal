@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class PostJobController extends Controller
 {
     public  function create(){
-        dd('only paid');
+        
+        return view('job.create');
     }
 }
