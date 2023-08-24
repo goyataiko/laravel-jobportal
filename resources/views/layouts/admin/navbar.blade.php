@@ -16,12 +16,23 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                @if(Auth::check()&&auth()->user()->user_type == 'employer')
+                <li><a class="dropdown-item" href="{{route('subscribe')}}">Subscribe</a></li>
+                @endif
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="#!">Logout</a></li>
+                <li><a class="dropdown-item" id="logout" href="#">Logout</a></li>
+                <form id="form_logout" action="{{route('logout')}}" method="post">@csrf</form>
             </ul>
         </li>
     </ul>
 </nav>
+
+<script>
+    let logout = document.getElementById('logout');
+    let form = document.getElementById('form_logout');
+    logout.addEventListener('click', function() {
+        form.submit();
+    })
+</script>
