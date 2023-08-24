@@ -1,24 +1,26 @@
-@extends('layouts.app')
+@extends('layouts.admin.main')
 @section('content')
 
 <div class="container mt-5">
     Hello, {{ auth()->user()->name}}
     @if(!auth()->user()->billing_ends)
-        @if(Auth::check()&&auth()->user()->user_type == 'employer')
-            <p>Your trial
-                {{now()->format('Y-m-d') > auth()->user()->user_trial? 'was expired':'will expire' }}
-                on {{auth()->user()->user_trial}}</p>
-        @endif
+    @if(Auth::check()&&auth()->user()->user_type == 'employer')
+    <p>Your trial
+        {{now()->format('Y-m-d') > auth()->user()->user_trial? 'was expired':'will expire' }}
+        on {{auth()->user()->user_trial}}
+    </p>
     @endif
-    @if(auth()->user()->billing_ends)   
-        @if(Auth::check()&&auth()->user()->user_type == 'employer')
-            <p>Your membership
-                    {{now()->format('Y-m-d') > auth()->user()->billing_ends? 'was expired':'will expire' }}
-                    on {{auth()->user()->billing_ends}}</p>
-        @endif
+    @endif
+    @if(auth()->user()->billing_ends)
+    @if(Auth::check()&&auth()->user()->user_type == 'employer')
+    <p>Your membership
+        {{now()->format('Y-m-d') > auth()->user()->billing_ends? 'was expired':'will expire' }}
+        on {{auth()->user()->billing_ends}}
+    </p>
+    @endif
     @endif
     <div class="row justify-content-center">
-    @include('message')
+        @include('message')
         <div class="col-md-3">
             <div class="card-counter primary">
                 <p class="text-center mt-3 lead">User Profile</p>
@@ -60,18 +62,22 @@
         border-radius: 5px;
         transition: .3s linear all;
     }
+
     .card-counter.primary {
         background-color: #007bff;
         color: #FFF;
     }
+
     .card-counter.danger {
         background-color: #ef5350;
         color: #FFF;
     }
+
     .card-counter.success {
         background-color: #66bb6a;
         color: #FFF;
     }
+
     .card-counter.info {
         background-color: #26c6da;
         color: #FFF;
