@@ -6,9 +6,9 @@ use App\Models\Listing;
 use App\Http\Requests\JobPostFormRequest;
 use App\Http\Requests\JobEditFormRequest;
 use App\Post\JobPost;  //job 저장을 따로 export함
-use Carbon\Carbon;
-use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
+use App\Http\Middleware\isPremiumUser;
 
 class PostJobController extends Controller
 {
@@ -18,6 +18,7 @@ class PostJobController extends Controller
     {
         $this ->job = $job;
         $this ->middleware('auth');
+        $this ->middleware(isPremiumUser::class)->only(['create','delete']);
     }
 
     public function index() {
