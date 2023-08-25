@@ -44,4 +44,9 @@ class PostJobController extends Controller
         return back()->with('successMessage','Your job has been successfully updated'); 
     }
 
+    public function delete($id){
+        Listing::find($id)->delete();
+        return back()->with('successMessage','Your job has been successfully deleted');
+    }
+
 }
