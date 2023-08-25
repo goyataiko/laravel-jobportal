@@ -16,9 +16,14 @@ class PostJobController extends Controller
     //JobPost의 결과물을 받아 $this ->job에 저장
     public function __construct(JobPost $job)
     {
-        $this ->job = $job;        
+        $this ->job = $job;
+        $this ->middleware('auth');
     }
 
+    public function index() {
+        $jobs = Listing::where('user_id', auth()->user()->id)-> get();
+        return view('job.index', compact('jobs'));
+    }
 
     public  function create(){        
         return view('job.create');
@@ -38,5 +43,5 @@ class PostJobController extends Controller
         $this->job->updatePost($id, $request);
         return back()->with('successMessage','Your job has been successfully updated'); 
     }
-    
+
 }
