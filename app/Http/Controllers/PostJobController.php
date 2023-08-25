@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use App\Http\Requests\JobPostFormRequest;
+use App\Http\Requests\JobEditFormRequest;
 use App\Post\JobPost;  //job 저장을 따로 export함
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -29,5 +30,28 @@ class PostJobController extends Controller
         return back();
     }
 
+    public function edit(Listing $listing){
+        return view('job.edit', compact('listing'));
+    }
+
+    public function update($id, JobEditFormRequest $request){
+
+        if($request->hasFile('feature_image')){
+            $feature_image = $request -> file('feature_image')->store('public/images');
+            Listing::find($id)->update(['feature_image' => $feature_image]);
+        }
+
+        //"MM/DD/YYYY"인 경우 parse하기
+        if (strpos($request->date, '/') !== false) {
+            $parsedDate = Carbon::createFromFormat('m/d/Y', $request->date)->format('Y-m-d');
+
+            Listing::find($id)->update(['application_close_date' => $parsedDate]);
+        } 
+
+        Listing::find($id)->update($request->except('feature_image','application_close_date'));
+        
+
+        return back()->with('successMessage','Your job has been successfully updated'); 
+    }
     
 }
