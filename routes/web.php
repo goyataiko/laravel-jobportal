@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\isPremiumUser;
+use App\Http\Middleware\CheckAuth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -20,7 +21,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // 가입인증메일
@@ -34,19 +35,21 @@ Route::get('/verify', [DashboardController::class, 'verify'])->name('verificatio
 Route::get('/resend/verification/email', [DashboardController::class, 'resend'])->name('resend.email');
 
 // 로그인 or 가입
-Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware(CheckAuth::class);
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
-
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('/register/seeker', [UserController::class, 'createSeeker'])->name('create.seeker');
+Route::get('/register/seeker', [UserController::class, 'createSeeker'])->name('create.seeker')->middleware(CheckAuth::class);
 Route::post('/register/seeker', [UserController::class, 'storeSeeker'])->name('store.seeker');
-Route::get('/register/employer', [UserController::class, 'createEmployer'])->name('create.employer');
+Route::get('/register/employer', [UserController::class, 'createEmployer'])->name('create.employer')->middleware(CheckAuth::class);
 Route::post('/register/employer', [UserController::class, 'storeEmployer'])->name('store.employer');
+
+Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile')->middleware('auth');
+Route::post('/user/profile', [UserController::class, 'profileUpdate'])->name('profile.update')->middleware('auth');
 
 // 대시보드
 Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware('verified')
+    ->middleware('verified', isPremiumUser::class)
     ->name('dashboard.index');
 
 // 구독기능
