@@ -35,17 +35,19 @@ Route::get('/verify', [DashboardController::class, 'verify'])->name('verificatio
 Route::get('/resend/verification/email', [DashboardController::class, 'resend'])->name('resend.email');
 
 // 로그인 or 가입
-Route::get('/login', [UserController::class, 'login'])->name('login')->middleware(CheckAuth::class);
+Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('/register/seeker', [UserController::class, 'createSeeker'])->name('create.seeker')->middleware(CheckAuth::class);
+Route::get('/register/seeker', [UserController::class, 'createSeeker'])->name('create.seeker');
 Route::post('/register/seeker', [UserController::class, 'storeSeeker'])->name('store.seeker');
-Route::get('/register/employer', [UserController::class, 'createEmployer'])->name('create.employer')->middleware(CheckAuth::class);
+Route::get('/register/employer', [UserController::class, 'createEmployer'])->name('create.employer');
 Route::post('/register/employer', [UserController::class, 'storeEmployer'])->name('store.employer');
 
 Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile')->middleware('auth');
 Route::post('/user/profile', [UserController::class, 'profileUpdate'])->name('profile.update')->middleware('auth');
+Route::get('/user/profile/seeker', [UserController::class, 'seekerProfile'])->name('seeker.profile')->middleware('auth');
+Route::post('/user/profile/seeker', [UserController::class, 'seekerProfileUpdate'])->name('seeker.update')->middleware('auth');
 
 // 대시보드
 Route::get('/dashboard', [DashboardController::class, 'index'])
