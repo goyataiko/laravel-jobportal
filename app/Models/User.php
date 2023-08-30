@@ -31,6 +31,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'plan',
     ];
 
+    public function listings()
+    {
+        return $this->belongsToMany(Listing::class)
+        // 일자리 별로 어떤 사람이 있는지 확인하기 위해 아래는 user에 붙임
+            ->withPivot('shortlisted')
+            ->withTimestamps();
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

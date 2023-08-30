@@ -19,7 +19,13 @@ class Listing extends Model
         'address',
         'salary',
         'application_close_date',
-        'slug',
-  
+        'slug',  
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+            // ->withPivot('shortlisted')
+            // ->withTimestamps();
+    }
 }
