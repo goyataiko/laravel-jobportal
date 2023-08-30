@@ -44,10 +44,12 @@ Route::post('/register/seeker', [UserController::class, 'storeSeeker'])->name('s
 Route::get('/register/employer', [UserController::class, 'createEmployer'])->name('create.employer');
 Route::post('/register/employer', [UserController::class, 'storeEmployer'])->name('store.employer');
 
+// 프로필
 Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile')->middleware('auth');
 Route::post('/user/profile', [UserController::class, 'profileUpdate'])->name('profile.update')->middleware('auth');
 Route::get('/user/profile/seeker', [UserController::class, 'seekerProfile'])->name('seeker.profile')->middleware('auth');
 Route::post('/user/password', [UserController::class, 'changePassword'])->name('user.password')->middleware('auth');
+Route::post('/upload/resume', [UserController::class, 'uploadResume'])->name('upload.resume')->middleware('auth');
 
 // 대시보드
 Route::get('/dashboard', [DashboardController::class, 'index'])
