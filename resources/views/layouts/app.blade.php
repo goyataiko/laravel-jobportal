@@ -17,13 +17,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>            
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
                 @if(!@Auth::check())
                 <a class="nav-link" href="{{route('login')}}">Login</a>
                   <a class="nav-link" href="{{route('create.seeker')}}">Job Seeker</a>
                   <a class="nav-link" href="{{route('create.employer')}}">Employer</a>
                 @endif
                 @if(@Auth::check())
+                  <a class="nav-link active" aria-current="page" href="{{route('seeker.profile')}}">profile</a>
                   <a class="nav-link" id="logout" href="#">LogOut</a>
                 @endif
                 <form id="form_logout" action="{{route('logout')}}" method="post">@csrf</form>

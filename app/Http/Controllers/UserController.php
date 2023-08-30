@@ -88,6 +88,11 @@ class UserController extends Controller
     {
         return view('profile.index');
     }
+    
+    public function seekerProfile()
+    {
+        return view('seeker.profile');
+    }
 
     public function profileUpdate(Request $request)
     {
