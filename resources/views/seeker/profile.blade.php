@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2>Edit Your Profile</h2>
@@ -48,10 +48,29 @@
                     <input type="password" name="confirm_password" class="form-control" id="confirm_password">
                 </div>
                 <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-primary">Password Change</button>
+                    <button type="submit" class="btn btn-primary">Change Password</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <h2>Update Resume</h2>
+            <form action="{{route('upload.resume')}}" method="post" enctype="multipart/form-data">@csrf
+                <div class="form-group">
+                    <label for="resume">Upload a Resume</label>
+                    <input type="file" name="resume" class="form-control" id="resume">
+                </div>
+                @if($errors->has('resume'))
+                    <span class="text-danger">{{$errors->first('resume')}}</span>
+                @endif
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </div>
 @endsection

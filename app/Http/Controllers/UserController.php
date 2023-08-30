@@ -14,6 +14,10 @@ class UserController extends Controller
     const JOB_SEEKR = 'seeker';
     const JOB_POSTER = 'employer';
 
+
+    /* ==============================================================
+                            가입
+    =============================================================== */
     public function createSeeker()
     {
         return view('user.seeker-register');
@@ -56,6 +60,9 @@ class UserController extends Controller
         // return redirect('login')->with('successMessage','your account is created');
     }
 
+    /* ==============================================================
+                            로그인
+    =============================================================== */
     public function login()
     {
         return view('user.login');
@@ -85,6 +92,9 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
+    /* ==============================================================
+                            프로필
+    =============================================================== */
     public function profile()
     {
         return view('profile.index');
@@ -125,4 +135,19 @@ class UserController extends Controller
         
         return back()->with('successMessage', 'Your password has been successfully updated');
     }
+
+    public function uploadResume(Request $request)
+    {
+        $this->validate($request, [
+            'resume' => 'required|mimes:pdf,doc,docx,txt|max:2048',
+        ]);
+        
+        if ($request->hasFile('resume')) {
+            $resume_path = $request->file('resume')->store('public/resume');
+            User::find(auth()->user()->id)->update(['resume' => $resume_path]);
+
+            return back()->with('successMessage', 'Your resume has been successfully updated');
+        }        
+    }
+    
 }

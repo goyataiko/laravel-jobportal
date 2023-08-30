@@ -17,7 +17,17 @@
                 <div class="form-group">
                     <label for="name">Company Name</label>
                     <input type="text" id="logo" name="name" class="form-control" value="{{auth()->user()->name}}">
+                </div>                
+                <div class="form-group">
+                    <label for="about">About Company</label>
+                    <textarea name="about" id="about" class="form-control summernote">
+                        {{auth()->user()->about}}
+                    </textarea>
+                    @if($errors->has('description'))
+                    <span class="text-danger">{{$errors->first('description')}}</span>
+                    @endif
                 </div>
+
                 <div class="form-group mt-3">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
