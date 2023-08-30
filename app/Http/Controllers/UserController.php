@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\RegistrationRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -72,7 +73,7 @@ class UserController extends Controller
             if(auth()->user()->user_type === 'employer'){
                 return redirect('/dashboard');
             } else {
-                return redirect('/#notEmployer');
+                return redirect('/');
             }
         }
         return "Wrong ID or Password";
@@ -88,7 +89,7 @@ class UserController extends Controller
     {
         return view('profile.index');
     }
-    
+
     public function seekerProfile()
     {
         return view('seeker.profile');
@@ -102,6 +103,26 @@ class UserController extends Controller
         }
         User::find(auth()->user()->id)->update($request->except('profile_pic'));
 
-        return back()->with('successMessage', 'Your profile has been successfully updated'); 
+        return back()->with('successMessage', 'Your profile has been successfully updated');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8',
+        ]);
+
+        $user = auth()->user();
+        if (!Hash::check($request->current_password, $user->password)) {            
+            return back()->with('errorMessage', 'Your current password is incorrect');
+        } elseif($request->confirm_password !== $request->new_password){
+            return back()->with('errorMessage', 'The new password and the confirmed password are not the same.');
+        }
+        $user->password = Hash::make($request->new_password);
+
+        $user->save();
+        
+        return back()->with('successMessage', 'Your password has been successfully updated');
     }
 }

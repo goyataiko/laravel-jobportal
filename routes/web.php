@@ -47,7 +47,7 @@ Route::post('/register/employer', [UserController::class, 'storeEmployer'])->nam
 Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile')->middleware('auth');
 Route::post('/user/profile', [UserController::class, 'profileUpdate'])->name('profile.update')->middleware('auth');
 Route::get('/user/profile/seeker', [UserController::class, 'seekerProfile'])->name('seeker.profile')->middleware('auth');
-Route::post('/user/profile/seeker', [UserController::class, 'seekerProfileUpdate'])->name('seeker.update')->middleware('auth');
+Route::post('/user/password', [UserController::class, 'changePassword'])->name('user.password')->middleware('auth');
 
 // 대시보드
 Route::get('/dashboard', [DashboardController::class, 'index'])
