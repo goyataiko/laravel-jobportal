@@ -23,8 +23,8 @@
                     <textarea name="about" id="about" class="form-control summernote">
                         {{auth()->user()->about}}
                     </textarea>
-                    @if($errors->has('description'))
-                    <span class="text-danger">{{$errors->first('description')}}</span>
+                    @if($errors->has('about'))
+                    <span class="text-danger">{{$errors->first('about')}}</span>
                     @endif
                 </div>
 
