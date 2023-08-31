@@ -11,7 +11,7 @@
                 <div class="row g-0">
                     <div class="col-auto">
                         @if($user->profile_pic)
-                        <img src="{{Storage::url($user->profile_pic)}}" width="150" class="mt-3">
+                        <img src="{{Storage::url($user->profile_pic)}}" class="rounded-circle" width="150" height="150px" class="mt-3">
                         @else
                         <img src="https://placehold.co/400" class="rounded-circle" width="150px" alt="Profile Picture">
                         @endif
