@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ApplicantController extends Controller
 {
@@ -18,8 +17,20 @@ class ApplicantController extends Controller
 
     public function show(Listing $listing)
     {
-        $listings = Listing::with('users')->where('slug', $listing->slug)->first();
-        // dd($listings);
-        return view('applicants.show', compact('listings'));
+        $listing = Listing::with('users')->where('slug', $listing->slug)->first();
+
+        return view('applicants.show', compact('listing'));
+    }
+
+    public function shortlist($listingID, $userID)
+    {
+        $listing = Listing::find($listingID);        
+        if ($listing) {
+            $listing->users()->updateExistingPivot($userID, ['shortlisted' => true]);
+
+            return back()->with('successMessage', 'User is shortlisted successfully');
+        }
+
+        return back();
     }
 }

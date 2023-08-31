@@ -9,7 +9,7 @@
             <div class="card mb-4 mt-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Your Jobs
+                    Applicants
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
