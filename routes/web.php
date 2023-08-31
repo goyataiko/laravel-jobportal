@@ -75,3 +75,5 @@ Route::get('job', [PostJobController::class, 'index'])->name('job.index');
 Route::delete('job/{id}/delete', [PostJobController::class, 'delete'])->name('job.delete');
 
 Route::get('applicant', [ApplicantController::class, 'index'])->name('applicant.index');
+                    //job(listing)을 slug로 받아라
+Route::get('applicant/{listing:slug}', [ApplicantController::class, 'show'])->name('applicant.show');
