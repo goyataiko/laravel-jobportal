@@ -10,12 +10,16 @@ class ApplicantController extends Controller
 {
     public function index()
     {   //현 로그인 아이디로 작성한 Listing을 모두 취득
-        $listings = Listing::withCount('users')->where('user_id', auth()->user()->id)->get();
+        //latest로 최근 순으로
+        $listings = Listing::latest()->withCount('users')->where('user_id', auth()->user()->id)->get();
 
         return view('applicants.index', compact('listings'));
-            // //listing_user테이블에서, 위에서 나온 listing들이 갖는 모든 레코드를 찾아오기
-            // // $records = DB::table('listing_user')->whereIn('listing_id', $listings->pluck('id'))->get();
+    }
 
-
+    public function show(Listing $listing)
+    {
+        $listings = Listing::with('users')->where('slug', $listing->slug)->first();
+        // dd($listings);
+        return view('applicants.show', compact('listings'));
     }
 }
