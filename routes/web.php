@@ -74,6 +74,8 @@ Route::put('job/{id}/edit', [PostJobController::class, 'update'])->name('job.upd
 Route::get('job', [PostJobController::class, 'index'])->name('job.index');
 Route::delete('job/{id}/delete', [PostJobController::class, 'delete'])->name('job.delete');
 
+// applicant
 Route::get('applicant', [ApplicantController::class, 'index'])->name('applicant.index');
                     //job(listing)을 slug로 받아라
 Route::get('applicant/{listing:slug}', [ApplicantController::class, 'show'])->name('applicant.show');
+Route::post('shortlist/{listingID}/{userID}', [ApplicantController::class, 'shortlist'])->name('applicant.shortlist');
