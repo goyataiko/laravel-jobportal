@@ -19,6 +19,12 @@ class ApplicantController extends Controller
 
     public function show(Listing $listing)
     {
+        // //해당 listing을 만든사람만 볼 수 있도록함
+        // if($listing->user_id != auth()->id()){
+        //     abort(403);
+        // }
+        $this->authorize('view', $listing);
+
         $listing = Listing::with('users')->where('slug', $listing->slug)->first();
 
         return view('applicants.show', compact('listing'));
