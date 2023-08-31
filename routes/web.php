@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\ApplicantController;
 use App\Http\Middleware\isPremiumUser;
 use App\Http\Middleware\CheckAuth;
 use Illuminate\Support\Facades\Route;
@@ -72,3 +73,5 @@ Route::get('job/{listing}/edit', [PostJobController::class, 'edit'])->name('job.
 Route::put('job/{id}/edit', [PostJobController::class, 'update'])->name('job.update');
 Route::get('job', [PostJobController::class, 'index'])->name('job.index');
 Route::delete('job/{id}/delete', [PostJobController::class, 'delete'])->name('job.delete');
+
+Route::get('applicant', [ApplicantController::class, 'index'])->name('applicant.index');

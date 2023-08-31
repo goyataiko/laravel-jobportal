@@ -32,8 +32,8 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function listings()
-    {
-        return $this->belongsToMany(Listing::class)
+    {                                      //abc순 2개 키,관계정의 외래키, 조인하려는 외래키
+        return $this->belongsToMany(Listing::class, 'listing_user', 'user_id', 'listing_id')
         // 일자리 별로 어떤 사람이 있는지 확인하기 위해 아래는 user에 붙임
             ->withPivot('shortlisted')
             ->withTimestamps();
