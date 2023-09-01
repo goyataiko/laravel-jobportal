@@ -36,6 +36,7 @@ class ApplicantController extends Controller
         $user = User::find($userId);
 
         if ($listing) {
+            dd($userId);
             $listing->users()->updateExistingPivot($userId, ['shortlisted' => true]);
             
             Mail::to($user->email)->queue(new ShortlistMail($user->name, $listing->title));
@@ -51,6 +52,6 @@ class ApplicantController extends Controller
         $user = auth()->user();
         $user->listings()->syncWithoutDetaching($listingId);
         
-        return back()->with('successMessage', 'Your Application is successfully submitted');
+        return back()->with('successMessage', 'Your application is successfully submitted');
     }
 }

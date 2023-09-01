@@ -12,6 +12,7 @@
                 @endif
                 <div class="card-body">
                     <h2 class="card-title">{{$listing->title}}</h2>
+                    @include('message')
                     <span class="badge bg-primary">{{$listing->job_type}}</span>
                     <p>Salary: ￥{{number_format($listing->salary)}}</p>
                     <p>Address: {{$listing->address}}</p>
@@ -22,17 +23,16 @@
                     <p class="card-text">{!!$listing->roles!!}</p>
 
                     <p class="card-text mt-4">Application closing date: {{$listing->application_close_date}}</p>
-                    @if(auth()->user()->resume)
-                    <a href="#" class="btn btn-primary mt-3">Apply Now</a>
-                    @else
+
+                    @if(Auth::check())
+                    @if(empty(auth()->user()->resume))
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal">
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#applyModal">
                         Upload Resume
                     </button>
-
                     <!-- Modal -->
                     <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <form action="{{route('applicant.submit', [$listing->id])}}" method="post">@csrf
+                        <form action="{{route('application.submit', [$listing->id])}}" method="post">@csrf
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -40,7 +40,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <input type="file" />
+                                        <input type="file" name="resume" />
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" id="btnApply" class="btn btn-primary" disabled>Apply</button>
@@ -49,6 +49,14 @@
                             </div>
                         </form>
                     </div>
+                    @else
+                    <form action="{{ route('application.submit', [$listing->id]) }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-primary mt-3">Apply Now</button>
+                    </form>
+                    @endif
+                    @else
+                    <p class="fw-bold">Please log in to apply</p>
                     @endif
                 </div>
             </div>
