@@ -36,7 +36,6 @@ class ApplicantController extends Controller
         $user = User::find($userId);
 
         if ($listing) {
-            dd($userId);
             $listing->users()->updateExistingPivot($userId, ['shortlisted' => true]);
             
             Mail::to($user->email)->queue(new ShortlistMail($user->name, $listing->title));

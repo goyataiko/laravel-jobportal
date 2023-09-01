@@ -23,16 +23,30 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
+          @if(@Auth::check())
+          <div class="dropdown ms-2">
+            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              @if( empty(auth()->user()->profile_pic))
+              <img src="{{asset('image/profile.svg')}}" width="35" class="rounded-circle mt-1">
+              @else
+              <img src="{{Storage::url(auth()->user()->profile_pic)}}" 
+              width="35" height="35" class="rounded-circle mt-1">
+              @endif
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end text-center">
+              <li><a class="dropdown-item nav-link" aria-current="page" href="{{route('seeker.profile')}}">profile</a></li>
+              <li><a class="dropdown-item nav-link" id="logout" href="#">LogOut</a></li>
+              <form id="form_logout" action="{{route('logout')}}" method="post">@csrf</form>
+            </ul>
+          </div>
+          @endif
+
           @if(!@Auth::check())
           <a class="nav-link" href="{{route('login')}}">Login</a>
           <a class="nav-link" href="{{route('create.seeker')}}">Job Seeker</a>
           <a class="nav-link" href="{{route('create.employer')}}">Employer</a>
           @endif
-          @if(@Auth::check())
-          <a class="nav-link active" aria-current="page" href="{{route('seeker.profile')}}">profile</a>
-          <a class="nav-link" id="logout" href="#">LogOut</a>
-          @endif
-          <form id="form_logout" action="{{route('logout')}}" method="post">@csrf</form>
+
         </div>
       </div>
     </div>
