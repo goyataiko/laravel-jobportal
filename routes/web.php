@@ -22,7 +22,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::get('/', [JoblistingController::class, 'index'])->name('index');
+Route::get('/', [JoblistingController::class, 'index'])->name('home');
+            //job(listing)을 slug로 받아라
+Route::get('/job/{listing:slug}', [JoblistingController::class, 'show'])->name('job.show');
 
 
 // 가입인증메일
@@ -76,6 +78,5 @@ Route::delete('job/{id}/delete', [PostJobController::class, 'delete'])->name('jo
 
 // applicant
 Route::get('applicant', [ApplicantController::class, 'index'])->name('applicant.index');
-                    //job(listing)을 slug로 받아라
 Route::get('applicant/{listing:slug}', [ApplicantController::class, 'show'])->name('applicant.show');
 Route::post('shortlist/{listingID}/{userID}', [ApplicantController::class, 'shortlist'])->name('applicant.shortlist');
