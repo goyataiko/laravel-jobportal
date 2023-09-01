@@ -19,7 +19,7 @@ class ApplicantController extends Controller
 
     public function show(Listing $listing)
     {
-        // //해당 listing을 만든사람만 볼 수 있도록함
+        // //해당 listing을 만든사람만 지원자를 볼 수 있도록함
         // if($listing->user_id != auth()->id()){
         //     abort(403);
         // }
