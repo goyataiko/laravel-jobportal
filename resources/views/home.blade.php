@@ -11,7 +11,8 @@
             <div class="card p-2">
                 <div class="text-right"><small>{{$job->job_type}}</small></div>
                 <div class="text-center mt-2 p-3">
-                    <img alt="Company Image" src="{{Storage::url($job->profile->profile_pic)}}" width="60" height="60" class="rounded-circle">
+                    <img alt="Company Image" src="{{Storage::url($job->profile->profile_pic)}}" 
+                    width="100" height="100" class="rounded-circle">
                     <span class="d-block fw-bold">{{$job->title}}</span>
                     <hr>
                     <span>Amazon</span>
@@ -19,8 +20,8 @@
                         <small class="ml-1">{{$job->address}}</small>
                     </div>
                     <div class="d-flex justify-content-between mt-3">
-                        <span>{{$job->salary}}</span>
-                        <button class="btn btn-sm btn-outline-dark">Apply</button>
+                        <span>￥{{number_format($job->salary)}}</span>
+                        <a href="{{route('job.show', [$job->slug])}}"><button class="btn btn-sm btn-outline-dark">Apply</button></a>
                     </div>
                 </div>
             </div>
@@ -29,4 +30,9 @@
     </div>
 </div>
 
+<style>
+    .card:hover {
+        background-color: #efefef;
+    }
+</style>
 @endsection
