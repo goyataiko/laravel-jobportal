@@ -9,6 +9,8 @@ use App\Http\Requests\RegistrationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use function PHPUnit\Framework\returnSelf;
+
 class UserController extends Controller
 {
     const JOB_SEEKR = 'seeker';
@@ -77,7 +79,7 @@ class UserController extends Controller
 
         $credential = $request->only('email', 'password');
         if (Auth::attempt($credential)) {
-            if(auth()->user()->user_type === 'employer'){
+            if (auth()->user()->user_type === 'employer') {
                 return redirect('/dashboard');
             } else {
                 return redirect('/');
@@ -124,15 +126,15 @@ class UserController extends Controller
         ]);
 
         $user = auth()->user();
-        if (!Hash::check($request->current_password, $user->password)) {            
+        if (!Hash::check($request->current_password, $user->password)) {
             return back()->with('errorMessage', 'Your current password is incorrect');
-        } elseif($request->confirm_password !== $request->new_password){
+        } elseif ($request->confirm_password !== $request->new_password) {
             return back()->with('errorMessage', 'The new password and the confirmed password are not the same.');
         }
         $user->password = Hash::make($request->new_password);
 
         $user->save();
-        
+
         return back()->with('successMessage', 'Your password has been successfully updated');
     }
 
@@ -141,13 +143,27 @@ class UserController extends Controller
         $this->validate($request, [
             'resume' => 'required|mimes:pdf,doc,docx,txt|max:2048',
         ]);
-        
+
         if ($request->hasFile('resume')) {
             $resume_path = $request->file('resume')->store('public/resume');
             User::find(auth()->user()->id)->update(['resume' => $resume_path]);
 
             return back()->with('successMessage', 'Your resume has been successfully updated');
-        }        
+        }
     }
-    
+
+
+    public function resumeSave(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file')->store('public/resume');
+            User::where('id', auth()->user()->id)->update([
+                'resume' => $file
+            ]);
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['error' => 'error']);
+    }
 }

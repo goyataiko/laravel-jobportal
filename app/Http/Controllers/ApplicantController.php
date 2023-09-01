@@ -30,13 +30,14 @@ class ApplicantController extends Controller
         return view('applicants.show', compact('listing'));
     }
 
-    public function shortlist($listingID, $userID)
+    public function shortlist($listingId, $userId)
     {
-        $listing = Listing::find($listingID);
-        $user = User::find($userID);
+        $listing = Listing::find($listingId);
+        $user = User::find($userId);
 
         if ($listing) {
-            $listing->users()->updateExistingPivot($userID, ['shortlisted' => true]);
+            dd($userId);
+            $listing->users()->updateExistingPivot($userId, ['shortlisted' => true]);
             
             Mail::to($user->email)->queue(new ShortlistMail($user->name, $listing->title));
 
@@ -44,5 +45,13 @@ class ApplicantController extends Controller
         }
 
         return back();
+    }
+
+    public function apply($listingId)
+    {
+        $user = auth()->user();
+        $user->listings()->syncWithoutDetaching($listingId);
+        
+        return back()->with('successMessage', 'Your application is successfully submitted');
     }
 }

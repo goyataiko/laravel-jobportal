@@ -54,6 +54,9 @@ Route::get('/user/profile/seeker', [UserController::class, 'seekerProfile'])->na
 Route::post('/user/password', [UserController::class, 'changePassword'])->name('user.password')->middleware('auth');
 Route::post('/upload/resume', [UserController::class, 'uploadResume'])->name('upload.resume')->middleware('auth');
 
+Route::post('/resume/upload', [UserController::class, 'resumeSave'])->name('resume.save')->middleware('auth');
+
+
 // 대시보드
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('verified', isPremiumUser::class)
@@ -80,3 +83,4 @@ Route::delete('job/{id}/delete', [PostJobController::class, 'delete'])->name('jo
 Route::get('applicant', [ApplicantController::class, 'index'])->name('applicant.index');
 Route::get('applicant/{listing:slug}', [ApplicantController::class, 'show'])->name('applicant.show');
 Route::post('shortlist/{listingID}/{userID}', [ApplicantController::class, 'shortlist'])->name('applicant.shortlist');
+Route::post('application/{listingID}/submit', [ApplicantController::class, 'apply'])->name('application.submit');
