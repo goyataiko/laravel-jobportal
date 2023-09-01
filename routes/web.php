@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\JoblistingController;
 use App\Http\Middleware\isPremiumUser;
 use App\Http\Middleware\CheckAuth;
 use Illuminate\Support\Facades\Route;
@@ -21,9 +22,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [JoblistingController::class, 'index'])->name('index');
+
 
 // 가입인증메일
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
