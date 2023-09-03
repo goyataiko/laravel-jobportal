@@ -9,8 +9,8 @@
                 Salary
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{route('home', ['sort' => 'salary_high_to_low'])}}">High to Low</a></li>
-                <li><a class="dropdown-item" href="{{route('home', ['sort' => 'salary_low_to_high'])}}">Low to High</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['salary' => 'salary_high_to_low'])}}">High to Low</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['salary' => 'salary_low_to_high'])}}">Low to High</a></li>
             </ul>
 
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,10 +25,11 @@
                 Job Type
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{route('home', ['Job' => 'fullTime'])}}">Full Time</a></li>
-                <li><a class="dropdown-item" href="{{route('home', ['job' => 'partTime'])}}">Part Time</a></li>
-                <li><a class="dropdown-item" href="{{route('home', ['job' => 'casual'])}}">Casual</a></li>
-                <li><a class="dropdown-item" href="{{route('home', ['job' => 'contract'])}}">Contract</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['job_type' => 'all'])}}">All</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['job_type' => 'fullTime'])}}">Full Time</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['job_type' => 'partTime'])}}">Part Time</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['job_type' => 'casual'])}}">Casual</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['job_type' => 'contract'])}}">Contract</a></li>
             </ul>
         </div>
     </div>
