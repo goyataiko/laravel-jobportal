@@ -57,6 +57,8 @@ Route::post('/upload/resume', [UserController::class, 'uploadResume'])->name('up
 
 Route::post('/resume/upload', [UserController::class, 'resumeSave'])->name('resume.save')->middleware('auth');
 
+Route::get('/user/job/applied', [UserController::class, 'jobApplied'])->name('job.applied')->middleware('auth','verified');
+
 
 // 대시보드
 Route::get('/dashboard', [DashboardController::class, 'index'])
