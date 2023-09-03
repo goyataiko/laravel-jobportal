@@ -3,19 +3,45 @@
 
 <div class="container mt-5">
     <div class="d-flex justify-content-between">
-        <h4>Recommended Jobs</h4> <button class="btn btn-dark">view</button>
+        <h4>Recommended Jobs</h4>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Salary
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{route('home', ['sort' => 'salary_high_to_low'])}}">High to Low</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['sort' => 'salary_low_to_high'])}}">Low to High</a></li>
+            </ul>
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Date
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{route('home', ['date' => 'latest'])}}">Latest</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['date' => 'oldeset'])}}">Oldest</a></li>
+            </ul>
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Job Type
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{route('home', ['Job' => 'fullTime'])}}">Full Time</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['job' => 'partTime'])}}">Part Time</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['job' => 'casual'])}}">Casual</a></li>
+                <li><a class="dropdown-item" href="{{route('home', ['job' => 'contract'])}}">Contract</a></li>
+            </ul>
+        </div>
     </div>
     <div class="row mt-2 g-1">
         @foreach($jobs as $job)
         <div class="col-md-3">
             <div class="card p-2">
-                <div class="text-right"><small>{{$job->job_type}}</small></div>
+                <div class="text-right"><small class="text-bg-info badge">{{$job->job_type}}</small></div>
                 <div class="text-center mt-2 p-3">
-                    <img alt="Company Image" src="{{Storage::url($job->profile->profile_pic)}}" 
-                    width="100" height="100" class="rounded-circle">
+                    <img alt="Company Image" src="{{Storage::url($job->profile->profile_pic)}}" width="100" height="100" class="rounded-circle">
                     <span class="d-block fw-bold">{{$job->title}}</span>
                     <hr>
-                    <span>Amazon</span>
+                    <span>{{$job->profile->name}}</span>
                     <div class="d-flex flex-row aligh-item-center justify-content-center">
                         <small class="ml-1">{{$job->address}}</small>
                     </div>
