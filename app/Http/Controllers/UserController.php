@@ -166,4 +166,15 @@ class UserController extends Controller
 
         return response()->json(['error' => 'error']);
     }
+
+
+    /* ============            기타             ======== */
+
+
+    public function jobApplied()
+    {
+        $users =  User::with('listings')->where('id', auth()->user()->id)->get();
+
+        return view('seeker.applied', compact('users'));
+    }
 }
