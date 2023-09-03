@@ -23,6 +23,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 Route::get('/', [JoblistingController::class, 'index'])->name('home');
+Route::get('/company/{id}', [JoblistingController::class, 'company'])->name('company');
             //job(listing)을 slug로 받아라
 Route::get('/job/{listing:slug}', [JoblistingController::class, 'show'])->name('job.show');
 

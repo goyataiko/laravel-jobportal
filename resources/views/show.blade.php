@@ -11,6 +11,13 @@
                 <img src="{{asset('image/jobHeader.jpg')}}" class="card-img-top" alt="Cover Image" height="150" style="object-fit: cover;">
                 @endif
                 <div class="card-body">
+
+                    <a href="{{route('company', [$listing->user_id])}}">
+                        <img src="{{Storage::url($listing->profile->profile_pic)}}" alt="Logo" width="60" height="60" class="rounded-circle">
+                    </a>
+                    <b>{{$listing->profile->name}}</b>
+
+
                     <h2 class="card-title">{{$listing->title}}</h2>
                     @include('message')
                     <span class="badge bg-primary">{{$listing->job_type}}</span>
