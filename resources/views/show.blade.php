@@ -12,7 +12,7 @@
                 @endif
                 <div class="card-body">
 
-                    <a href="{{route('company', [$listing->user_id])}}">
+                    <a href="{{route('company', [$listing->user_id])}}" style="text-decoration: none;">
                         <img src="{{Storage::url($listing->profile->profile_pic)}}" alt="Logo" width="60" height="60" class="rounded-circle">
                     </a>
                     <b>{{$listing->profile->name}}</b>

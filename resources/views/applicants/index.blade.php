@@ -29,7 +29,7 @@
                                 <td>{{$listing->title}}</td>
                                 <td>{{$listing->application_close_date}}</td>
                                 <td>{{$listing->users_count}}</td>
-                                <td>view</td>
+                                <td><a href="{{route('job.show', $listing->slug)}}">view</a></td>
                                 <td><a href="{{route('applicant.show', $listing->slug)}}">view</a></td>
                             </tr>
                             @endforeach
