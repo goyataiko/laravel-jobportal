@@ -29,15 +29,18 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-md-8">
+                <div class="col-md-12 mb-5">
                     <h3>List of Jobs</h3>
                     @foreach($company->jobs as $job)
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$job->name}}</h5>
-                            <p class="card-text">Location: {{$job->address}}</p>
-                            <p class="card-text">Salary: ${{number_format($job->salary,)}} per year</p>
-                            <a href="{{route('job.show', [$job->slug])}}" class="btn btn-primary">View</a>
+                    <div class="card mb-1 p-1">
+                        <div class="card-body d-flex justify-content-between">
+                            <div>
+                                <h5>{{$job->title}}</h5>
+                                <span class="badge bg-secondary">{{$job->job_type}}</span> <span class="badge bg-success">￥{{number_format($job->salary,)}}</span>
+                            </div>
+                            <div>
+                                <a href="{{route('job.show', [$job->slug])}}"><button class="btn btn-primary">Apply</button></a>
+                            </div>
                         </div>
                     </div>
                     @endforeach
