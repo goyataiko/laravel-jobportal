@@ -9,7 +9,7 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Dashboard</h1>
-                <div class="breadcrumb mb-4">
+                <div class="d-block mb-4">
                     <p>Hello, {{ auth()->user()->name}} </p> 
                     @if(!auth()->user()->billing_ends)
                     @if(Auth::check()&&auth()->user()->user_type == 'employer')
