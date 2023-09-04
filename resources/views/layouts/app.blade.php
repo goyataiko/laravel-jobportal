@@ -27,7 +27,7 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
           @if(@Auth::check())
           <div class="dropdown ms-2">
-            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="dropdown-toggle text-decoration-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               @if( empty(auth()->user()->profile_pic))
               <img src="{{asset('image/profile.svg')}}" width="35" class="rounded-circle mt-1">
               @else

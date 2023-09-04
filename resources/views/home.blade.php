@@ -10,12 +10,12 @@
         @foreach(\App\Models\User::where('user_type','employer')->take(6)->orderBy('id','ASC')->get() as $employer)
         <div class="col-md-4 px-2 py-1">
             <div class="card p-1">
-                <div class="col-md-10">
+                <a href="{{route('company', [$employer->id])}}" class="text-decoration-none">
                     <div class="text-center mt-2 p-3">
                         <img alt="Company Image" src="{{Storage::url($employer->profile_pic)}}" width="50" height="50" class="rounded-circle mb-1">
                         <span class="ms-2 fs-4">{{$employer->name}}</span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         @endforeach
@@ -35,7 +35,7 @@
     </div>
 
     <div class="d-flex justify-content-between my-2">
-        <h4>Recommended Jobs</h4>
+        <h4>Our Jobs</h4>
         <div class="dropdown">
             <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Salary
@@ -71,7 +71,7 @@
             <div class="card p-2 {{$job->job_type}}">
                 <div class="text-right"><small class="text-bg-info badge">{{$job->job_type}}</small></div>
                 <div class="text-center mt-2 p-3">
-                    <img alt="Company Image" src="{{Storage::url($job->profile->profile_pic)}}" width="100" height="100" class="rounded-circle">
+                    <img alt="Company Image" src="{{Storage::url($job->profile->profile_pic)}}" width="80" height="80" class="rounded-circle">
                     <span class="d-block fw-bold">{{$job->title}}</span>
                     <hr>
                     <span>{{$job->profile->name}}</span>
@@ -90,24 +90,16 @@
 </div>
 
 <style>
-    .fulltime {
-        background-color: green;
-        color: #fff;
+    span {
+        color: #212529;
     }
 
-    .parttime {
-        background-color: blue;
-        color: #fff;
+    .card {
+        transition: ease 0.7s;
     }
 
-    .casual {
-        background-color: red;
-        color: #fff;
-    }
-
-    .contract {
-        background-color: purple;
-        color: #fff;
+    .card:hover {
+        background-color: #f0f0f0;
     }
 
     .centered-content {
