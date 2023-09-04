@@ -15,7 +15,7 @@
 
             <div class="row mt-5">
                 <div class="col">
-                    <img src="/icons8-microsoft-48.png" alt="Company Logo" class="img-fluid">
+                    <img src="{{Storage::url($company->profile_pic)}}" width="60" alt="Company Logo" class="img-fluid rounded-circle">
                     <h2>{{$company->name}}</h2>
                     <p>{{$company->address}}</p>
                 </div>
