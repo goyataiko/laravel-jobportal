@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\Listing;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,13 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-        return view('dashboard');
+        $listings = Listing::withCount('users')->where('user_id', auth()->user()->id)->get();
+        $totalUserCount = 0;
+        foreach ($listings as $listing) {
+            $totalUserCount += $listing->users_count;
+        }
+
+        return view('dashboard', compact('totalUserCount'));
     }
 
     public function verify(){
