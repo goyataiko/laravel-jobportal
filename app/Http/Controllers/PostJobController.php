@@ -36,7 +36,7 @@ class PostJobController extends Controller
     {
         // JobPost의 결과물($this ->job)을 JobPostFormRequest로 유효성 검사해서 store함
         $this->job->store($request);
-        return back();
+        return redirect('/job');
     }
 
     public function edit(Listing $listing)
