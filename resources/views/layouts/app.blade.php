@@ -36,8 +36,13 @@
               @endif
             </a>
             <ul class="dropdown-menu dropdown-menu-end text-center">
-              <li><a class="dropdown-item nav-link" aria-current="page" href="{{route('seeker.profile')}}">Profile</a></li>
-              <li><a class="dropdown-item nav-link" aria-current="page" href="{{route('job.applied')}}">Applied Job</a></li>
+              @if (auth()->user()->user_type === "employer")
+                <li><a class="dropdown-item nav-link" aria-current="page" href="{{route('dashboard.index')}}">Dashboard</a></li>
+              @endif
+              @if (auth()->user()->user_type === "seeker")
+                <li><a class="dropdown-item nav-link" aria-current="page" href="{{route('seeker.profile')}}">Profile</a></li>
+                <li><a class="dropdown-item nav-link" aria-current="page" href="{{route('job.applied')}}">Applied Job</a></li>
+              @endif
               <li><a class="dropdown-item nav-link" id="logout" href="#">LogOut</a></li>
               <form id="form_logout" action="{{route('logout')}}" method="post">@csrf</form>
             </ul>
