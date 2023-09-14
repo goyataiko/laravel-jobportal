@@ -44,7 +44,7 @@
         <h4>Recently added</h4>
     </div>
     <div class="row mt-2 mx-2">
-        @foreach(\App\Models\Listing::take(4)->orderBy('created_at','desc')->get() as $job)
+        @foreach(\App\Models\Listing::take(3)->orderBy('created_at','desc')->get() as $job)
         <div class="col-12 p-1">
             <div class="card mb-1">
                 <div class="card-body d-flex justify-content-between">
