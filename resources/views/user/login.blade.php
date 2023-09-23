@@ -39,7 +39,7 @@
             </div>
             <div class="p-3 card">
                 <p>Seeker</p>
-                <p>id: test1@test1.com</p>
+                <p>id: test1@test.com</p>
                 <p>pw: password123</p>
             </div>
         </div>
