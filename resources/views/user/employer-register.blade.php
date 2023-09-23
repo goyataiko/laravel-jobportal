@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var url = "{{route('store.employer')}}";
     document.getElementById('btnRegister').addEventListener('click', function(e){
-        alert("A"); 제대로 연결됐는지 확인
+        // alert("A"); 제대로 연결됐는지 확인
         var card = document.getElementById('card');
         var messageDiv = document.getElementById('message');
         messageDiv.innerHTML = '';
