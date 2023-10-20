@@ -17,7 +17,7 @@
   <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <img src="{{asset('image/logo.png')}}" height="35" alt="logo">
+        <img src="{{secure_asset('image/logo.png')}}" height="35" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
           <div class="dropdown ms-2">
             <a class="dropdown-toggle text-decoration-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               @if( empty(auth()->user()->profile_pic))
-              <img src="{{asset('image/profile.svg')}}" width="35" class="rounded-circle mt-1">
+              <img src="{{secure_asset('image/profile.svg')}}" width="35" class="rounded-circle mt-1">
               @else
               <img src="{{Storage::url(auth()->user()->profile_pic)}}" 
               width="35" height="35" class="rounded-circle mt-1">

@@ -8,7 +8,7 @@
             <div class="row justify-content-center mt-2">
                 <div class="col">
                     <div class="hero-section" style="background-color:#f5f5f5;width:100%;height:200px;">
-                        <img src="{{asset('image/jobHeader.jpg')}}" class="card-img-top" alt="Cover Image" height="200" style="object-fit: cover;">
+                        <img src="{{secure_asset('image/jobHeader.jpg')}}" class="card-img-top" alt="Cover Image" height="200" style="object-fit: cover;">
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@
             <div class="col-md-6 text-center">
                 <h1>Looking for a job?</h1>
                 <h3>Please create an Account</h3>
-                <img src='{{asset("image/click-here.png")}}' alt="click-here">
+                <img src='{{secure_asset("image/click-here.png")}}' alt="click-here">
             </div>
             <div class="col-md-6">
                 <div class="card shadow"  id="card">

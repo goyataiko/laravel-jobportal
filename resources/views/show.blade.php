@@ -8,7 +8,7 @@
                 @if($listing->feature_image)
                 <img src="{{Storage::url($listing->feature_image)}}" class="card-img-top" alt="Cover Image" height="150" style="object-fit: cover;">
                 @else
-                <img src="{{asset('image/jobHeader.jpg')}}" class="card-img-top" alt="Cover Image" height="150" style="object-fit: cover;">
+                <img src="{{secure_asset('image/jobHeader.jpg')}}" class="card-img-top" alt="Cover Image" height="150" style="object-fit: cover;">
                 @endif
                 <div class="card-body">
 
