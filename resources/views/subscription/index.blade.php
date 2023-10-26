@@ -3,6 +3,13 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         @include('message')
+        <div class="card p-3 mb-3 text-center">
+            <p>テスト用カードの番号は、以下のとおりです。CVCと有効期限は任意で入力できます。
+                <br>
+                カード番号：4242 4242 4242 4242<br>
+                <br>
+                テスト決済時に加入したメールアドレス宛に、購読感謝メールが送信されます。</p>
+        </div>   
         <div class="col-md-4">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
